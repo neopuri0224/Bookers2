@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf8">
+  </head>
+  <body>
+  	<% if flash[:notice] %>
+  		<div class="flash">
+  		  	<%= flash[:notice] %>
+  		</div>
+  	<% end %>
+  	<p class="show-title">Title:
+  		<%= @book.title %>
+  	</p>
+  	<p class="show-body">Body:
+  		<%= @book.category %>
+  	</p>
+		<%= link_to "Edit", edit_book_path(@book),class:"edit_2" %>
+  		<%= link_to "Back", books_path,class:"back_1" %>
+  </body>
+</html>
