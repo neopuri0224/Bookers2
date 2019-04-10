@@ -1,21 +1,71 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  	<meta charset="utf8">
-  </head>
-  <body>
-  	<% if flash[:notice] %>
-  		<div class="flash">
-  		  	<%= flash[:notice] %>
-  		</div>
-  	<% end %>
-  	<p class="show-title">Title:
-  		<%= @book.title %>
-  	</p>
-  	<p class="show-body">Body:
-  		<%= @book.category %>
-  	</p>
-		<%= link_to "Edit", edit_book_path(@book),class:"edit_2" %>
-  		<%= link_to "Back", books_path,class:"back_1" %>
-  </body>
-</html>
+<body>
+  <div class="container">
+    <% if flash[:notice] %>
+      <div class="flash">
+          <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col-xs-3">
+        <div class="user-info">
+        <h1>User Info</h1>
+        <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th>name</th>
+                  <td>
+                      <%= @book.user.name %>
+                  </td>
+                </tr>
+                <tr>
+                  <th>introduction</th>
+                  <td>
+                      <%= @book.user.caption %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <%= link_to edit_user_path(current_user.id), class: "edit_user_1" do %>
+            <button class="btn btn-default btn-block"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+            </button>
+            <% end %>
+        </div>
+      <%= render 'books/list', books: @books %>
+      </div>
+        <div class="col-xs-9">
+          <h1>Book detail</h1>
+          <table class="table">
+            <tbody>
+              <tr>
+                 <td>
+                  <div class="row">
+                  <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg",size:"30x30" %>
+                  </div>
+                  <%= link_to user_path(@book.user_id), class: "user_#{@book.user_id}" do %>
+                  <%= @book.user.name %>
+                  <% end %>
+                 </td>
+                 <td>
+                 <%= @book.title %>
+                 </td>
+                 <td>
+                 <%= @book.category %>
+                 </td>
+                 <td>
+                  <% if @book.user_id == current_user.id %>
+                  <%= link_to "Edit", edit_book_path(@book),class: "btn btn-primary edit_book_#{@book.id}" %>
+                  <% end %>
+                 </td>
+                 <td>
+                  <% if @book.user_id == current_user.id %>
+                  <%= link_to "Destroy", book_path(@book), method: :delete,  class: "btn btn-danger destroy_#{@book.id}" %>
+                  <% end %>
+                 </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+<body>

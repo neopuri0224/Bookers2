@@ -1,0 +1,12 @@
+        <section class="New-box">
+          <h1>New Book</h1>
+          	<%= form_for(@book) do |f| %>
+          	<h4 class="new-title row">Title
+          		<%= f.text_field :title, class: "book_title col-xs-12" %>
+          	</h4>
+          	<h4 class="new-body row">Opinion
+          		<%= f.text_area :category, class: "book_body col-xs-12" %>
+          	</h4>
+          		<%= f.submit 'Create Book', class: "btn-primary btn-lg btn-block" %>
+          	<% end %>
+        </section>

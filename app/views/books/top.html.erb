@@ -1,16 +1,23 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  	<meta charset="utf8">
-  </head>
   <body>
-
-    <h1>ようこそ<strong>Bookers</strong>へ!</h1>
-    <p class="text-top"><strong>Bookers</strong>　"では、さまざまな書籍に関するあなたの意見や"</p>
-    <p class="text-bottom">印象を共有し交換することができます
-    </p>
-    <p>
-      <%= link_to "Start", books_path %>
-    </p>
-  </body>
-</html>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+        <h1>welcome to <span class="glyphicon glyphicon-book" aria-hidden="true"></span><strong>Bookers</strong> ‼︎</h1>
+        <p class="text-top">In<span class="glyphicon glyphicon-book" aria-hidden="true"></span> <strong>Bookers,</strong></p>
+        <p class="text-middle">you can share and exchange your opinions , inpressions , and emotions
+        </p>
+        <p class="text-bottom">about varioius books!</p>
+            <p>
+              <%= link_to new_user_session_path, class: "sign_in" do %>
+              <button type="button" class="btn btn-info btn-lg btn-block">Log in</button>
+              <% end %>
+            </p>
+            <p>
+              <%= link_to new_user_registration_path, class: "sign_up" do %>
+              <button type="button" class="btn btn-success btn-lg btn-block">Sign up</button>
+              <% end %>
+            </p>
+        </div>
+      </div>
+    </div>
+</body>

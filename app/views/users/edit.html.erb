@@ -1,0 +1,30 @@
+<div class="container">
+	<h1>User info</h1>
+	<%= flash[:notice] %>
+	<%= flash[:test] %>
+<%= form_for(@user) do |f| %>
+  <div class="row">
+    <div class="form-group col-xs-4">
+        <label>Name</label>
+        <%= f.text_field :name, class: "name col-xs-12" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group has-icon col-xs-4">
+	    <div class="user-edit-image">
+	    	<label class="control-label" for="inputEmail">Image</label>
+	        <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb" %>
+	    </div>
+	    <label class="control-label sr-only" for="inputEmail">ProfileImage</label>
+	    <%= f.attachment_field :profile_image, placeholder: "プロフィール画像", class: "user_image user-edit-form" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-xs-4">
+        <label class="control-label" for="inputEmail">Introduction</label>
+        <%= f.text_area :caption, class: "introduction col-xs-12" %>
+    </div>
+  </div>
+    <%= f.submit "Update User", class:"btn-default btn-xs" %>
+<% end %>
+</div>

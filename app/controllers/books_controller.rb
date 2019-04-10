@@ -1,5 +1,9 @@
 class BooksController < ApplicationController
+
   def top
+  end
+
+  def about
   end
 
   def show
@@ -17,34 +21,45 @@ class BooksController < ApplicationController
 
   def create
   	book = Book.new(book_params)
+    book.user_id = current_user.id
   	if book.save
-  	  flash[:notice] = "投稿を作成しました"
-  	  redirect_to book_path(book)
+  	  flash[:notice] = "Book was successfully created!"
+      redirect_to book_path(book)
+    else
+      flash[:danger] = "error! It can't be blank!"
+      redirect_to books_path(book)
   	end
   end
 
   def edit
   	@book = Book.find(params[:id])
+    if @book.user_id != current_user.id
+      redirect_to book_path(@book)
+    end
   end
 
   def update
   	book = Book.find(params[:id])
   	if book.update(book_params)
-      flash[:notice] = "Book was successfully updated."
-  	redirect_to book_path(book)
-  end
+      flash[:notice] = "Book was successfully updated!"
+  	  redirect_to book_path(book)
+    else
+      flash[:danger] = "error!"
+      redirect_to books_path(book)
+    end
   end
 
   def destroy
     book = Book.find(params[:id])
     if book.destroy
-      flash[:notice] = "Book was successfully destroyed."
+      flash[:notice] = "Book was successfully destroyed!"
       redirect_to books_path
     end
   end
 
   private
+
   def book_params
-  	params.require(:book).permit(:title, :category)
+  	params.require(:book).permit(:title, :category, :user, :caption)
   end
 end

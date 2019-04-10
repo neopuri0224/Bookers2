@@ -4,63 +4,53 @@
   		<div class="flash">
   		  	<%= flash[:notice] %>
   		</div>
-    <% else %>
-      <div class="error-flash">
-          <%= flash[:danger] %>
-      </div>
   	<% end %>
     <div class="row">
       <div class="col-xs-3">
         <div class="user-info">
       	<h1>User Info</h1>
-        <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+      	    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
             <table class="table">
               <tbody>
                 <tr>
                   <th>name</th>
-                  <td>
+	              <td>
                     <%= current_user.name %>
                   </td>
                 </tr>
                 <tr>
                   <th>introduction</th>
                   <td>
-                      <%= current_user.caption %>
+                    <%= current_user.caption %>
                   </td>
                 </tr>
               </tbody>
             </table>
-            <%= link_to edit_user_path(current_user.id), class: "edit_user_2" do %>
+            <%= link_to edit_user_path(current_user.id), class: "edit_user_#{current_user.id}" do %>
             <button class="btn btn-default btn-block"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
             </button>
             <% end %>
         </div>
-      <%= render 'books/list', books: @books %>
+      <%= render 'users/list', users: @users %>
       </div>
         <div class="col-xs-9">
-          <h1>Books</h1>
+          <h1>Users</h1>
           <table class="table">
             <thead>
               <tr>
+                <th>image</th>
+                <th>name</th>
                 <th>&nbsp;</th>
-                <th>Title</th>
-                <th>Opinion</th>
               </tr>
             </thead>
             <tbody>
-              <% @books.each do |book| %>
+              <% @users.each do |user| %>
               <tr>
                 <td>
-                  <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg",size:"50x50" %>
+                  <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg",size:"30x30" %>
                 </td>
-                <td>
-                 <%= link_to book_path(book.id), class: "book_#{book.id}" do %>
-                 <%= book.title %>
-                 <% end %>
-                 </td>
-                <td>
-                 <%= book.category %>
-                 </td>
+                <td> <%= user.email %></td>
+                <td> <%= link_to "Show", user_path(user.id),class: "show_#{user.id}" %></td>
               </tr>
               <% end %>
             </tbody>
@@ -69,4 +59,3 @@
       </div>
   </div>
 <body>
-
