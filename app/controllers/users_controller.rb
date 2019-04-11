@@ -25,21 +25,12 @@ class UsersController < ApplicationController
 
   def update
   	@user = User.find(params[:id])
-  	@user_check = User.new(user_params)
-  	if @user_check.caption.present?
-
   	 	if @user.update(user_params)
     	 redirect_to user_path(@user.id)
     	else
-    		flash[:test] = "Introduction can't be over 50 words!"
+    		flash[:test] = "error!"
     		render :edit
     	end
-
-    else
-    	flash[:notice] = "Introduction can't be blank!"
-       render :edit
-    end
-
   end
 
   private
