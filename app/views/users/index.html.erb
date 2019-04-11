@@ -49,7 +49,7 @@
                 <td>
                   <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg",size:"30x30" %>
                 </td>
-                <td> <%= user.email %></td>
+                <td> <%= user.name %></td>
                 <td> <%= link_to "Show", user_path(user.id),class: "show_#{user.id}" %></td>
               </tr>
               <% end %>
