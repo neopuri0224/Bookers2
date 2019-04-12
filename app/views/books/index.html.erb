@@ -30,7 +30,7 @@
                 </tr>
               </tbody>
             </table>
-            <%= link_to edit_user_path(current_user.id), class: "edit_user_2" do %>
+            <%= link_to edit_user_path(current_user.id), class: "edit_user_#{current_user.id}" do %>
             <button class="btn btn-default btn-block"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
             </button>
             <% end %>
