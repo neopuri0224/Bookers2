@@ -8,6 +8,7 @@ class BooksController < ApplicationController
 
   def show
   	@book = Book.find(params[:id])
+    @books = Book.new
   end
 
   def index
@@ -22,14 +23,15 @@ class BooksController < ApplicationController
 
   def create
   	book = Book.new(book_params)
-    book.user_id = current_user.id
-  	if book.save
-  	  flash[:notice] = "Book was successfully created!"
-      redirect_to book_path(book)
-    else
-      flash[:danger] = "error! It can't be blank!"
-      redirect_to books_path(book)
-  	end
+    if book.user_id = current_user.id
+      	if book.save
+      	  flash[:notice] = "Book was successfully created!"
+          redirect_to book_path(book)
+        else
+          flash[:danger] = "error! It can't be blank!"
+          redirect_to books_path(book)
+      	end
+    end
   end
 
   def edit
