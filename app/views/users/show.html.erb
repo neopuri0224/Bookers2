@@ -9,8 +9,8 @@
       <div class="col-xs-3">
         <div class="user-info">
       	<h1>User Info</h1>
-            <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
-            <table class="table">
+            <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size:"100x100" %>
+            <table class="table table-hover">
               <tbody>
                 <tr>
                   <th>name</th>

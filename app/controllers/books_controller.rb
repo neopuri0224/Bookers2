@@ -7,6 +7,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    @user = current_user
   	@book = Book.find(params[:id])
     @books = Book.new
   end
@@ -14,7 +15,7 @@ class BooksController < ApplicationController
   def index
     @user = current_user
   	@book = Book.new
-  	@books = Book.all
+  	@books = Book.page(params[:page]).order(id: "DESC").per(6)
   end
 
   def new
